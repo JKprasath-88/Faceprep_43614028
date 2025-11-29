@@ -1,0 +1,61 @@
+<%@ page import="java.sql.*, java.security.MessageDigest" %>
+<%
+String fname = request.getParameter("fname");
+String lname = request.getParameter("lname");
+String email = request.getParameter("email");
+String user = request.getParameter("uname");
+String pwd = request.getParameter("pass");
+
+// Check if any field is null or empty
+if (fname == null || lname == null || email == null || user == null || pwd == null ||
+    fname.isEmpty() || lname.isEmpty() || email.isEmpty() || user.isEmpty() || pwd.isEmpty()) {
+    out.println("All fields are required! <a href='registration.jsp'>Go Back</a>");
+    return;
+}
+
+// 🔐 NEW — Username & Password Minimum Length Check
+if (user.length() < 6) {
+    out.println("Username must be at least 6 characters! <a href='registration.jsp'>Go Back</a>");
+    return;
+}
+
+if (pwd.length() < 6) {
+    out.println("Password must be at least 6 characters! <a href='registration.jsp'>Go Back</a>");
+    return;
+}
+
+// Hash password using SHA-256
+MessageDigest md = MessageDigest.getInstance("SHA-256");
+byte[] hash = md.digest(pwd.getBytes("UTF-8"));
+StringBuilder sb = new StringBuilder();
+for (byte b : hash) { sb.append(String.format("%02x", b)); }
+String hashedPassword = sb.toString();
+
+// Connect to MySQL
+Class.forName("com.mysql.cj.jdbc.Driver");
+Connection con = DriverManager.getConnection(
+    "jdbc:mysql://localhost:3306/test", "jspuser", "jsp_pass");
+
+// Insert user
+String sql = "INSERT INTO members(first_name,last_name,email,uname,pass,regdate) VALUES (?,?,?,?,?,CURDATE())";
+PreparedStatement ps = con.prepareStatement(sql);
+ps.setString(1, fname);
+ps.setString(2, lname);
+ps.setString(3, email);
+ps.setString(4, user);
+ps.setString(5, hashedPassword);
+
+try {
+    int i = ps.executeUpdate();
+    if(i > 0){
+        response.sendRedirect("welcome.jsp");
+    } else {
+        out.println("Registration failed. <a href='registration.jsp'>Try Again</a>");
+    }
+} catch(SQLException e) {
+    out.println("Error: " + e.getMessage() + " <a href='registration.jsp'>Go Back</a>");
+} finally {
+    ps.close();
+    con.close();
+}
+%>

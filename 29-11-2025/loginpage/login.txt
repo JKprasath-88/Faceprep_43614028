@@ -1,0 +1,33 @@
+<%@ page import="java.sql.*, java.security.MessageDigest" %>
+<%
+String userid = request.getParameter("uname");
+String pwd = request.getParameter("pass");
+
+// Hash password
+MessageDigest md = MessageDigest.getInstance("SHA-256");
+byte[] hash = md.digest(pwd.getBytes("UTF-8"));
+StringBuilder sb = new StringBuilder();
+for(byte b: hash){ sb.append(String.format("%02x", b)); }
+String hashedPassword = sb.toString();
+
+// Connect to DB
+Class.forName("com.mysql.cj.jdbc.Driver");
+Connection con = DriverManager.getConnection(
+    "jdbc:mysql://localhost:3306/test", "jspuser", "jsp_pass");
+
+String sql = "SELECT * FROM members WHERE uname=? AND pass=?";
+PreparedStatement ps = con.prepareStatement(sql);
+ps.setString(1, userid);
+ps.setString(2, hashedPassword);
+
+ResultSet rs = ps.executeQuery();
+
+if(rs.next()){
+    session.setAttribute("userid", userid);
+    response.sendRedirect("/JSPCRUDProject/index.jsp");
+}else{
+    out.println("Invalid username or password. <a href='index.jsp'>Try again</a>");
+}
+
+rs.close(); ps.close(); con.close();
+%>

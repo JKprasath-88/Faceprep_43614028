@@ -1,0 +1,59 @@
+USE ORG123;
+CREATE TABLE Department (
+    DeptID INT PRIMARY KEY,
+    DeptName VARCHAR(50) NOT NULL
+);
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    EmpName VARCHAR(50) NOT NULL,
+    DeptID INT,
+    FOREIGN KEY (DeptID) REFERENCES Department(DeptID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+INSERT INTO Department (DeptID, DeptName) VALUES
+(1, 'HR'),
+(2, 'IT'),
+(3, 'Finance');
+INSERT INTO Employee (EmpID, EmpName, DeptID) VALUES
+(101, 'Aditi', 1),
+(102, 'Ravi', 2),
+(103, 'Sneha', 2),
+(104, 'Karan', 3);
+UPDATE Department SET DeptID = 20 WHERE DeptID = 2;
+DELETE FROM Department WHERE DeptID = 1;
+SELECT * FROM Department;
+SELECT * FROM Employee;
+
+CREATE TABLE Worker (
+	WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	FIRST_NAME CHAR(25) NOT NULL,
+	LAST_NAME CHAR(25) NOT NULL,
+	SALARY INT(15) NOT NULL,
+	JOINING_DATE DATETIME,
+	DEPARTMENT CHAR(25) NOT NULL,
+    USERNAME CHAR(25) NOT NULL,
+    AGE INT NOT NULL
+);
+
+INSERT INTO Worker 
+	(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, USERNAME, AGE) VALUES
+		(001, 'Monika', 'Arora', 100000, '14-02-20 09.00.00', 'HR','MONI12',27),
+		(002, 'Niharika', 'Verma', 80000, '14-06-11 09.00.00', 'Admin','NIHA13',22),
+		(003, 'Vishal', 'Singhal', 300000, '14-02-20 09.00.00', 'HR','VISH16',23),
+		(004, 'Amitabh', 'Singh', 500000, '14-02-20 09.00.00', 'Admin','AMI18',29),
+		(005, 'Vivek', 'Bhati', 500000, '14-06-11 09.00.00', 'Admin','AMI18',28),
+		(006, 'Vipul', 'Diwan', 200000, '14-06-11 09.00.00', 'Account','VIPU19',34),
+		(007, 'Satish', 'Kumar', 75000, '14-01-20 09.00.00', 'Account','VIPU19',25),
+		(008, 'Geetika', 'Chauhan', 90000, '14-04-11 09.00.00', 'Admin','GEETU20',26);
+        
+        SELECT * FROM WORKER where first_name like '_i_e%';
+        
+        select first_name, salary,department from worker where 
+        salary <=100000 and department ='admin';
+        create view less_than_1L as select first_name, salary,department from worker where 
+        salary <=100000 and department ='admin';
+        create or replace  view less_than_1L as select first_name, salary,department from worker where 
+        salary <=100000 and department ='admin';
+        select*from less_than_1L;
+        drop view less_than_1L;

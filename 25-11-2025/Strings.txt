@@ -1,0 +1,53 @@
+package javaBasics;
+public class Strings {
+			public static void main(String[] args) {
+					        String s1 = "java";                                    
+					        char[] ch = { 's', 't', 'r', 'i', 'n', 'g' };
+					        String s2 = new String(ch);                             
+					        String s3 = new String("example");                      
+					        System.out.println(s1);       
+					        System.out.println(s2);      
+					        System.out.println(s3);      
+
+					        String str = "Sachin Tendulkar";			
+					        System.out.println("charAt(0): " + str.charAt(0));      				  
+					        System.out.println("length(): " + str.length());         			
+					        System.out.println("substring(0, 6): " + str.substring(0, 6));
+					        System.out.println(str.contains("Tend")); 				    
+					        System.out.println( str.equals("Sachin Tendulkar"));					  
+					        System.out.println(str.equalsIgnoreCase("sachin tendulkar"));				
+					        System.out.println( "".isEmpty());    			
+					        System.out.println("concat: " + "Hello ".concat("World")); 					   
+					        String[] words = str.split(" ");
+					        System.out.println("split(): ");
+					        for (String w : words) System.out.println(w);					  
+					        System.out.println("indexOf('T'): " + str.indexOf('T'));   					  
+					        System.out.println("toLowerCase(): " + str.toLowerCase());					      
+					        System.out.println("toUpperCase(): " + str.toUpperCase());					        
+					        String spaced = "   Hello Java   ";
+					        System.out.println("trim(): [" + spaced.trim() + "]");				    
+					        int a = 100;
+					        System.out.println("String.valueOf(100): " + String.valueOf(a));					     
+					        String rep = "Java is fun. Java is powerful.";
+					        System.out.println( rep.replace("Java", "Python"));					    
+					        String r2 = "javatpoint is a very good website";
+					        System.out.println( r2.replaceAll("a", "e"));					    
+					        System.out.println( str.startsWith("Sa")); 					  
+					        System.out.println(str.endsWith("kar"));   			 
+					        System.out.println(  "Sachin".compareTo("Sachin"));
+					        System.out.println( "Sachin".compareTo("Ratan"));
+
+
+					        String t1 = "Hello";
+					        String t2 = "Hello";
+					        String t3 = new String("Hello");
+
+					        System.out.println( (t1 == t2));    
+					        System.out.println( (t1 == t3));    
+					        System.out.println(t1.equals(t3)); 
+
+					        String x = new String("Java");
+					        String y = x.intern();             
+					        System.out.println( y);
+					    }
+					}

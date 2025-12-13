@@ -1,0 +1,33 @@
+show databases;
+ create database sathyabama;
+  use sathyabama;
+  create table ECE(
+  sid int,
+  sname varchar(30),
+smarks int
+  );
+  show tables from sathyabama;
+  desc ece;
+  select * from ece;
+  INSERT INTO ECE (sid, sname, smarks) VALUES
+(1, 'Aditi', 85),
+(2, 'Rahul', 90),
+(3, 'Sneha', 78),
+(4, 'Vikram', 88),
+(5, 'Priya', 92);
+SELECT * FROM ECE;
+create table CSE(
+sid int,
+sname varchar(30),
+smarks int
+);
+USE sathyabama;
+CREATE TABLE CSE (
+  sid INT,
+  sname VARCHAR(30),
+  smarks INT
+);
+ALTER TABLE CSE
+ADD department VARCHAR(20);
+DESC CSE;
+

@@ -1,0 +1,34 @@
+package javaBasics;
+import org.apache.commons.lang3.ArrayUtils;
+import java.util.Arrays;
+public class Arrays1 {
+
+	public static void main(String[] args) {
+
+		int[] arr = { 1, 2, 3, 4, 5 };
+
+		String arr1 = Arrays.toString(arr);
+
+		System.out.println(arr);
+
+		System.out.println(arr1);
+
+		String[] stringArray = { "abc", "bcd", "cba", "dcb", "efg" };
+		boolean b = Arrays.asList(stringArray).contains("abc");
+
+		System.out.println(b);
+
+		int[] Arr = { 1, 2, 3, 4, 5 };
+		int[] Arr2 = { 6, 7, 8, 9, 10 };
+		int a[] = ArrayUtils.addAll(Arr, Arr2);
+		String s = Arrays.toString(a);
+		System.out.println(s);
+
+
+				int[] Array1 = { 1, 2, 3, 4, 5 }; 
+				int[] Array2 = { 6, 7, 8, 9, 10 }; 
+				int a1[] = ArrayUtils.addAll(Array1, Array2); 
+				String s1 = Arrays.toString(a); 
+				System.out.println(s); 
+	}
+}

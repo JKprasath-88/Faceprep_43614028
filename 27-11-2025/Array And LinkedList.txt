@@ -1,0 +1,84 @@
+package collection;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.List;
+public class ArrayAndLinkedList {
+
+	public static void main(String[] args) {
+		ArrayList a=new ArrayList<>();
+		a.add('a');
+		a.add("Array List");
+		a.add(true);
+		a.add(1000000000);
+		a.add(1);
+		a.add(false);
+		//a.add(-13443423987909473289472090923);
+		a.add(12345);
+		a.get(1);
+		a.get(3);
+		
+		System.out.println("Traversing list through Iterator:");
+		Iterator itr=a.iterator();  
+		while(itr.hasNext()){  
+		System.out.println(itr.next());  
+		}  
+		
+		System.out.println("Traversing list through for loop:");  
+        for(int i=0;i<a.size();i++)  
+        {  
+         System.out.println(a.get(i));     
+        }  
+        
+        System.out.println("Traversing list through forEach() method:");          
+            a.forEach(l->{ System.out.println(l);});
+
+
+		
+		LinkedList b =new LinkedList<>();		
+		b.add("Linked List");
+		b.add(2000000000);
+		b.add(1);
+		b.add(false);
+		b.add(true);
+		b.add('a');
+		//a.add(-13443423987909473289472090923);
+		b.add(12345);
+		b.get(1);
+		b.get(3);
+		System.out.println("Traversing list through iterator:");
+		Iterator itrb=b.iterator();  
+		while(itr.hasNext()){  
+		System.out.println(itr.next());  
+		}
+		
+		System.out.println("Traversing list through for loop:");  
+        for(int i=0;i<b.size();i++)  
+        {  
+         System.out.println(b.get(i));     
+        }  
+        
+        System.out.println("Traversing list through forEach() method:");          
+        b.forEach(l->{ System.out.println(l);});
+        
+        long startTime = System.currentTimeMillis();  
+        ArrayList<String> list=new ArrayList<String>();
+        
+
+        for (int i=0; i<10000; i++){  
+        	 list.add("Ravi");   
+        }  
+        System.out.println("Time taken by ArrayList: " +
+        (System.currentTimeMillis() - startTime) + "ms");  
+        
+        startTime = System.currentTimeMillis();  
+        LinkedList<String> al=new LinkedList<String>();  
+       
+
+        for (int i=0; i<10000; i++){  
+        	   al.add("Ravi");
+        }  
+        System.out.println("Time taken by LinkedList: " + 
+        (System.currentTimeMillis() - startTime) + "ms");  
+    }  	
+		}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Employee Form</title>
+        <link rel="stylesheet" href="emp.css">
+    </head>
+    <body>
+        <div class="form-fill">
+            <h1>EMPLOYEE ADDITION FORM</h1>
+            <form id="addEmployeeById">
+                <div class="item">
+                    <label for="fname">Name:</label>
+                    <input type="text" id="fname" name="fname">
+                </div>
+                <div class="item">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age">
+                </div>
+                <div class="item">
+                    <label for="dob">DOB:</label>
+                    <input type="date" id="dob" name="dob">
+                </div>
+
+                <div class="item">
+                  <label>Gender:</label>
+                  <div class="radio-group">
+                     <input type="radio" id="female" name="gender" value="Female">
+                     <label for="female">Female</label>
+                     <input type="radio" id="male" name="gender" value="Male">
+                     <label for="male">Male</label>
+                  </div>
+                </div>
+
+                <div class="item">
+                    <label for="position">Position:</label>
+                    <input type="text" id="position" name="position">
+                </div>
+                <div class="items">
+                    <button type="submit">Add Employee</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="table">
+            <table id="employeeTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>DOB</th>
+                        <th>Position</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="items">
+                <button id="removeBtn">Remove</button>
+            </div>
+        </div>
+
+        <script src="emp.js"></script>
+    </body>
+</html>

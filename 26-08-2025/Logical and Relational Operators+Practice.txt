@@ -1,0 +1,97 @@
+CREATE DATABASE ORG123;
+USE ORG123;
+CREATE TABLE Worker (
+	WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	FIRST_NAME CHAR(25) NOT NULL,
+	LAST_NAME CHAR(25) NOT NULL,
+	SALARY INT NOT NULL,
+	JOINING_DATE DATETIME,
+	DEPARTMENT CHAR(25) NOT NULL,
+    USERNAME CHAR(25) NOT NULL,
+    AGE INT NOT NULL
+);
+INSERT INTO Worker 
+	(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, USERNAME, AGE) 
+VALUES
+	(1, 'Monika', 'Arora', 100000, '2014-02-20 09:00:00', 'HR', 'MONI12', 27),
+	(2, 'Niharika', 'Verma', 80000, '2011-06-14 09:00:00', 'Admin', 'NIHA13', 22),
+	(3, 'Vishal', 'Singhal', 300000, '2014-02-20 09:00:00', 'HR', 'VISH16', 23),
+	(4, 'Amitabh', 'Singh', 500000, '2014-02-20 09:00:00', 'Admin', 'AMI18', 29),
+	(5, 'Vivek', 'Bhati', 500000, '2011-06-14 09:00:00', 'Admin', 'VIVEK17', 28),
+	(6, 'Vipul', 'Diwan', 200000, '2011-06-14 09:00:00', 'Account', 'VIPU19', 34),
+	(7, 'Satish', 'Kumar', 75000, '2014-01-20 09:00:00', 'Account', 'SATI21', 25),
+	(8, 'Geetika', 'Chauhan', 90000, '2011-04-11 09:00:00', 'Admin', 'GEETU20', 26);
+
+SELECT * FROM Worker;
+
+SELECT * FROM Worker WHERE Salary = 100000;
+SELECT * FROM Worker WHERE Department = 'Admin';
+SELECT * FROM Worker WHERE Age > 30;
+SELECT * FROM Worker WHERE Salary > 200000;
+SELECT * FROM Worker WHERE Age < 28;
+SELECT * FROM Worker WHERE Salary < 90000;
+SELECT * FROM Worker WHERE Age >= 28;
+SELECT * FROM Worker WHERE Salary >= 500000;
+SELECT * FROM Worker WHERE Age <= 25;
+SELECT * FROM Worker WHERE Salary <= 80000;
+SELECT * FROM Worker WHERE Department <> 'Admin';
+SELECT * FROM Worker WHERE Age != 29;
+SELECT * FROM Worker WHERE Department = 'Admin' AND Salary > 100000;
+SELECT * FROM Worker WHERE Age > 25 AND Department = 'HR';
+SELECT * FROM Worker WHERE Department = 'HR' OR Department = 'IT';
+SELECT * FROM Worker WHERE Age < 26 OR Salary > 400000;
+SELECT * FROM Worker WHERE NOT Department = 'HR';
+SELECT * FROM Worker WHERE NOT Age = 25;
+
+SELECT * FROM Worker
+WHERE DEPARTMENT IN ('HR', 'Admin');
+SELECT * FROM Worker
+WHERE AGE IN (25, 27);
+
+SELECT * FROM Worker
+WHERE DEPARTMENT NOT IN ('HR', 'Admin');
+SELECT * FROM Worker
+WHERE AGE NOT IN (22, 29);
+
+SELECT MIN(SALARY) AS SmallestPrice
+FROM Worker;
+SELECT MAX(SALARY) AS SmallestPrice
+FROM Worker;
+SELECT count(SALARY)
+ AS lowestSalaryPerson
+FROM Worker;
+SELECT sum(SALARY)
+ AS lowestSalaryPerson
+FROM Worker;
+SELECT avg(SALARY)
+ AS lowestSalaryPerson
+FROM Worker;
+
+SELECT AVG(SALARY) AS Avg_Salary_Admin
+FROM Worker
+WHERE DEPARTMENT = 'Admin';
+SELECT SUM(SALARY) AS Total_Salary_HR_Admin
+FROM Worker
+WHERE DEPARTMENT IN ('HR', 'Admin');
+SELECT COUNT(*) AS Count_V
+FROM Worker
+WHERE FIRST_NAME LIKE 'V%';
+SELECT SUM(SALARY) AS Total_Salary
+FROM Worker
+WHERE SALARY BETWEEN 50000 AND 200000;
+SELECT FIRST_NAME FROM Worker
+UNION
+SELECT LAST_NAME FROM Worker;
+SELECT distinct(SALARY) FROM Worker;
+SELECT DEPARTMENT FROM Worker
+UNION ALL
+SELECT DEPARTMENT FROM Worker;
+
+SELECT FIRST_NAME, SALARY,
+CASE
+WHEN SALARY >= 300000 THEN 'Rich'
+WHEN SALARY >= 100000 AND SALARY <= 300000 THEN 'Middle'
+ELSE 'Poor'
+END
+AS StatusBasedOnSalary
+FROM Worker;

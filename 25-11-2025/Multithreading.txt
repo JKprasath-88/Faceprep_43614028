@@ -1,0 +1,137 @@
+package javaBasics;
+import java.util.Arrays;
+public class Multithreading {
+
+		public static void main(String args[]) {
+			Numeric num = new Numeric();
+			Alpha alp = new Alpha();
+
+			num.start(); 
+			alp.start();
+
+			System.out.println("Number Thread : " + num.getName());
+			System.out.println("Alphabets Thread : " + alp.getName());
+
+			System.out.println("Number Thread : " + num.getPriority());
+			System.out.println("Alphabets Thread : " + alp.getPriority());
+
+			System.out.println("Number Thread : " + num.getState());
+			System.out.println("Alphabets Thread : " + alp.getState());
+
+			System.out.println(Thread.currentThread().getName());
+
+			num.setName("Jayanth");
+			alp.setName("Karthick");
+
+			System.out.println("Number Thread : " + num.getState());
+			System.out.println("Alphabets Thread : " + alp.getState());
+
+			if (num.isAlive()) {
+			System.out.println("Jayanth thread is Alive");
+			} else {
+				System.out.println("Jayanth Thread is dead");
+			}
+
+			if (alp.isAlive()) {
+			System.out.println("Karthick thread is Alive");
+			} else {
+			System.out.println("Karthir thread is dead");
+			}
+
+		}
+
+	}
+
+	class Numeric extends Thread {
+		int a = 0;
+
+		public void run() {
+
+			
+				for (int i = 0; i <= 10; i++) {
+					a++;
+			System.out.println("Numeric Thread : " + a);
+			int b=i/10;
+				}
+			
+
+		}
+	}
+
+	class Alpha extends Thread {
+		char a = 'A';
+
+		public void run() {
+		
+				for (int i = 0; i <= 25; i++) {
+
+			System.out.println("Alpha Thread : " + a);
+					a++;
+					
+			
+			} 
+		}
+	}
+
+
+package collection;
+import java.util.Arrays;
+public class Multithreading {
+
+		public static void main(String args[]) {
+				// object creation for thread classes
+				Minute num = new Minute();
+				Seconds alp = new Seconds();
+
+				// start the thread
+				num.start();
+				alp.start();
+			
+			}
+
+		}
+
+		class Minute extends Thread {
+			int a = 0;
+
+			public void run() {
+
+				try {
+					for (int i = 0; i <= 59; i++) {
+						try {
+						System.out.println("Minutes : " + a);
+						a++;
+						Thread.sleep(60000);
+						}
+						catch(Exception e) {
+							System.out.println(e);
+						}
+					}
+				} catch (Exception e) {
+					System.out.println(e);
+				}
+
+			}
+		}
+
+		class Seconds extends Thread {
+			int a=0;
+
+			public void run() {
+				try {
+					for (int i = 0; i <= 59; i++) {
+
+						try {
+						System.out.println("Seconds :" + a);
+						a++;
+						Thread.sleep(1000);
+						}
+						catch(Exception e) {
+							System.out.println("Issues in Minutes Thread class");
+						}
+					}
+				} catch (Exception e) {
+					System.out.println(e);
+				}
+		}
+	}

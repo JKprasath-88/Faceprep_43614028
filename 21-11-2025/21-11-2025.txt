@@ -1,0 +1,234 @@
+#Polymorphism
+class Animal {
+
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal myAnimal = new Animal();  
+        Animal myDog = new Dog();        
+        Animal myCat = new Cat();        
+
+        myAnimal.sound();  
+        myDog.sound();     
+        myCat.sound();     
+    }
+}
+
+#Overloading
+package javaBasics;
+public class Overloading{
+	public static void main(String[]args){
+		overloading o=new overloading();
+		o.addition(1,2);
+		o.addition(1,2,3);
+		o.addition(1.2, 2);
+}
+}
+class overloading{
+	void addition(int a,int b){
+		System.out.println("Sum of 2 integers: "+a+b);
+	}
+	void addition(int a,int b,int c){
+		System.out.println("Sum of 3 integers: "+a+b+c);
+		
+	}
+	void addition(int a,double b){
+		System.out.println("Sum of a integer and a double: "+a+b);
+		
+	}
+	void addition(double a,int b){
+		System.out.println("Sum of a double and a integer: "+a+b);
+	}
+}
+
+#Constructor
+package javaBasics;
+public class constructor {
+	public static void main(String[] args){
+		addition a1=new addition(3,5);
+	}
+}
+class addition{
+	addition(){
+		System.out.println("Addition of 2 numbers");
+	}
+	addition(int a,int b){
+		this();
+		System.out.println(a+b);
+	}
+}
+
+#Encapsulation
+package javaBasics;
+public class Encapsulation {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Phonepay p=new Phonepay();
+		p.checkBalance();
+		p.changeMail();
+
+	}
+}
+class SBI{
+    String acc_holder="Akshaya";
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	public String getAcc_holder() {
+		return acc_holder;
+	}
+	public int getAcc_balance() {
+		return acc_balance;
+	}
+	int acc_balance=123450;
+	private String mail="akshayapreethi@gmail.com";
+}
+class Phonepay extends SBI{
+	void mail(){
+		//String acc_balance=543210;
+		//System.out.println(acc_balance);
+	}
+	void checkBalance(){
+		System.out.println(getAcc_holder());
+	}
+	void changeMail(){
+		System.out.println(getMail());
+		setMail("akshaya@gmail.com");
+		System.out.println(getMail());
+	}
+}
+
+#Abstraction
+package javaBasics;
+public class Abstraction {
+
+	public static void main(String[] args) {
+		SBA s= new SBA();
+		s.agriLoan();
+		s.EduLoan();
+	}
+
+}
+abstract class RBI{
+	private final void RBImessage(){
+		System.out.println("Secret..");
+	}
+	abstract void agriLoan();
+	abstract void EduLoan();
+}
+class SBA extends RBI{
+	void agriLoan(){
+		System.out.println("Agri loan percentage: 12%");
+	}
+	void EduLoan(){
+		System.out.println("Education loan percentage: 9.5%");
+	}
+}
+
+#Interface
+package javaBasics;
+interface Father {
+    void sign();
+}
+
+interface Mother {
+    void sign();   // abstract method
+}
+
+class Son implements Father, Mother {
+
+    public void sign() {
+        System.out.println("Son signs the document on behalf of both Father and Mother.");
+    }
+
+    public void play() {
+        System.out.println("Son is playing.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Father f = new Son();
+        f.sign();
+
+        Son s = new Son();
+        s.play();
+
+        Mother m = new Son();
+        m.sign();
+    }
+}
+
+#Exception Handling
+package nov19;
+import java.util.Scanner;
+public class OMRKing {
+    public static void main(String[] args) {
+        try {
+            Scanner s = new Scanner(System.in);
+            System.out.println("Enter value for a:");
+            int a = s.nextInt();
+            System.out.println("Enter value for b:");
+            int b = s.nextInt();
+            System.out.println("Output:" + (a / b));
+
+        }catch(ArithmeticException e) {
+            System.out.println("The mistake is: " + e);
+            System.out.println("Enter the correct value");
+        }
+        System.out.println("NullPointerException:");
+        try{
+            String s=null;
+            System.out.println(s.length());
+        }
+        catch(NullPointerException e){
+            System.out.println("The mistake is: "+ e);
+            System.out.println("Enter the correct value");
+        }
+        System.out.println("NumberFormatException");
+        try{
+            String s="abc";
+            int i=Integer.parseInt(s);
+        }
+        catch(NumberFormatException e){
+            System.out.println("The mistake is: "+ e);
+            System.out.println("Enter the correct value");
+        }
+        System.out.println("ArrayOutOfBoundsException:");
+        try{
+            int a[]=new int[5];
+            a[10]=50;
+        }
+        catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("The mistake is: "+ e);
+            System.out.println("Enter the correct value");
+        }
+        finally{
+            System.out.println("Thanks for visiting!");
+        }
+        System.out.println("Continue...");
+
+    }
+}
